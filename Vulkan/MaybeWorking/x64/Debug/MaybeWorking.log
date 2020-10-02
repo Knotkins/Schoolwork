@@ -1,0 +1,5 @@
+﻿  Main.cpp
+D:\School\3GPU\MaybeWorking\MaybeWorking\Main.cpp(194,1): warning C4150: deletion of pointer to incomplete type 'SDL_Window'; no destructor called
+C:\GameDev\SDL\include\SDL_video.h(90): message : see declaration of 'SDL_Window'
+D:\School\3GPU\MaybeWorking\MaybeWorking\Main.cpp(196,9): warning C4551: function call missing argument list
+  MaybeWorking.vcxproj -> D:\School\3GPU\MaybeWorking\x64\Debug\MaybeWorking.exe
