@@ -28,10 +28,18 @@ void GameObject::Render(Camera* camera_) {
 
 void GameObject::OnDestroy() {
 	model = nullptr;
+	for (auto m : components) {
+		delete m;
+		m = nullptr;
+	}
+	components.clear();
 }
 
 void GameObject::Update(float deltaTime_) {
 		SetAngle(GetAngle() + 0.005f);
+		for (auto m : components) {
+			m->Update(deltaTime_);
+		}
 }
 
 glm::vec3 GameObject::GetPosition() const {
@@ -105,4 +113,50 @@ void GameObject::SetHit(bool hit_, int buttonType_) {
 	if (hit) {
 		std::cout << nameTag << " was hit" << std::endl;
 	}
+}
+
+template<typename T>
+void GameObject::AddComponent(T t_)
+{
+	T* newComponent;
+	if (dynamic_cast<Component> (newComponent) == Component) {
+		if (GetComponent(newComponent) == nullptr) {
+			components.push_back(newComponent);
+			newComponent->OnCreate(this);
+		}
+		else {
+			Debug::Error("New component already exists on this object!", __FILE__, __LINE__);
+			delete newComponent;
+			newComponent = nullptr;
+			return;
+		}
+	}
+	else {
+		Debug::Error("New component is not of type component!", __FILE__, __LINE__);
+		delete newComponent;
+		newComponent = nullptr;
+		return;
+	}
+}
+
+template<typename T>
+Component GameObject::GetComponent(T t_)
+{
+	for (auto m : components) {
+		if (dynamic_cast<T> (m) == T) {
+			return m;
+		}
+	}
+	return nullptr;
+}
+
+template<typename T>
+void GameObject::RemoveComponent(T t_)
+{
+	for (int i = 0; i < components.size(); i++) {
+		if (dynamic_cast<T> (components[i]) == T) {
+			components.erase(components.begin() + i);
+		}
+	}
+
 }

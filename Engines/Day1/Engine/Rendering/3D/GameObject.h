@@ -2,7 +2,7 @@
 #define GAMEOBJECT_H
 
 #include "Model.h"
-
+#include "Component.h"
 class GameObject {
 public:
 	GameObject(Model* model_, glm::vec3 position_ = glm::vec3());
@@ -31,6 +31,11 @@ public:
 
 	BoundingBox GetBoundingBox() const;
 
+	template <typename T> void AddComponent(T t_);
+	template <typename T> Component GetComponent(T t_);
+	template <typename T> void RemoveComponent(T t_);
+
+
 private:
 	Model* model;
 	int modelInstance;
@@ -46,5 +51,8 @@ private:
 
 	bool hit;
 
+	std::vector<Component*> components;
 };
 #endif // !GAMEOBJECT_H
+
+
