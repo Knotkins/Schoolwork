@@ -1,0 +1,50 @@
+﻿  CollisionDetection.cpp
+D:\School\1ENGINES5\Day1\Day1\Engine\FX\LightSource.h(4,10): fatal error C1083: Cannot open include file: 'glew.h': No such file or directory
+  CollisionHandler.cpp
+D:\School\1ENGINES5\Day1\Day1\Engine\FX\LightSource.h(4,10): fatal error C1083: Cannot open include file: 'glew.h': No such file or directory
+  Camera.cpp
+D:\School\1ENGINES5\Day1\Day1\Engine\FX\LightSource.h(4,10): fatal error C1083: Cannot open include file: 'glew.h': No such file or directory
+  Debug.cpp
+  CoreEngine.cpp
+D:\School\1ENGINES5\Day1\Day1\Engine\Core\Window.h(4,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  GameObject.cpp
+D:\School\1ENGINES5\Day1\Day1\Engine\Rendering\3D\Mesh.h(4,10): fatal error C1083: Cannot open include file: 'glew.h': No such file or directory
+  EventListener.cpp
+D:\School\1ENGINES5\Day1\Day1\Engine\Events\MouseEventListener.h(4,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  GameScene.cpp
+D:\School\1ENGINES5\Day1\Day1\Engine\Core\Window.h(4,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  Game1.cpp
+D:\School\1ENGINES5\Day1\Day1\Engine\Core\Window.h(4,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  LightSource.cpp
+D:\School\1ENGINES5\Day1\Day1\Engine\FX\LightSource.h(4,10): fatal error C1083: Cannot open include file: 'glew.h': No such file or directory
+  LoadOBJModel.cpp
+D:\School\1ENGINES5\Day1\Day1\Engine\Rendering\3D\Mesh.h(4,10): fatal error C1083: Cannot open include file: 'glew.h': No such file or directory
+  Main.cpp
+D:\School\1ENGINES5\Day1\Day1\Engine\Core\Window.h(4,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  Window.cpp
+D:\School\1ENGINES5\Day1\Day1\Engine\Core\Window.h(4,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  Timer.cpp
+D:\School\1ENGINES5\Day1\Day1\Engine\Core\Timer.h(4,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  StartScene.cpp
+D:\School\1ENGINES5\Day1\Day1\Engine\Core\Window.h(4,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  Mesh.cpp
+D:\School\1ENGINES5\Day1\Day1\Engine\Rendering\3D\Mesh.h(4,10): fatal error C1083: Cannot open include file: 'glew.h': No such file or directory
+  Model.cpp
+D:\School\1ENGINES5\Day1\Day1\Engine\Rendering\3D\Mesh.h(4,10): fatal error C1083: Cannot open include file: 'glew.h': No such file or directory
+  ShaderHandler.cpp
+D:\School\1ENGINES5\Day1\Day1\Engine\Graphics\ShaderHandler.h(8,10): fatal error C1083: Cannot open include file: 'glew.h': No such file or directory
+  TextureHandler.cpp
+D:\School\1ENGINES5\Day1\Day1\Engine\Graphics\TextureHandler.h(7,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  MouseEventListener.cpp
+D:\School\1ENGINES5\Day1\Day1\Engine\Events\MouseEventListener.h(4,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  Generating Code...
+  Compiling...
+  SceneGraph.cpp
+D:\School\1ENGINES5\Day1\Day1\Engine\Rendering\3D\Mesh.h(4,10): fatal error C1083: Cannot open include file: 'glew.h': No such file or directory
+  MaterialHandler.cpp
+D:\School\1ENGINES5\Day1\Day1\Engine\Graphics\MaterialHandler.h(5,10): fatal error C1083: Cannot open include file: 'glew.h': No such file or directory
+  MaterialLoader.cpp
+D:\School\1ENGINES5\Day1\Day1\Engine\Graphics\MaterialHandler.h(5,10): fatal error C1083: Cannot open include file: 'glew.h': No such file or directory
+  OctSpatialPartition.cpp
+D:\School\1ENGINES5\Day1\Day1\Engine\FX\LightSource.h(4,10): fatal error C1083: Cannot open include file: 'glew.h': No such file or directory
+  Generating Code...
