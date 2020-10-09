@@ -6,6 +6,8 @@
 #include <vector>
 #include "3D/GameObject.h"
 #include "../Math/CollisionHandler.h"
+#include"2D/GuiObject.h"
+#include"2D/GuiImageCcomponent.h"
 
 class SceneGraph {
 public:
@@ -26,6 +28,11 @@ public:
 	void TransformMatrix(glm::mat4 projecMat_, glm::mat4 viewMat_);
 	bool InFrustrum(glm::vec3 position_);
 
+	void AddGuiObject(GuiObject* go_, std::string nameTag_ = "");
+	GuiObject* GetGuiObject(std::string nameTag_);
+
+	void Draw();
+
 private:
 	SceneGraph();
 	~SceneGraph();
@@ -34,6 +41,7 @@ private:
 	friend std::default_delete<SceneGraph>;
 	static std::map<GLuint, std::vector<Model*>> sceneModels;
 	static std::map<std::string, GameObject*> sceneGameObjects;
+	static std::map<std::string, GuiObject*> sceneGuiObjects;
 
 	std::vector<glm::vec4> Planes;
 };

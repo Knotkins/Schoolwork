@@ -38,6 +38,11 @@ bool GameScene::OnCreate() {
 
 	apple->AddComponent<TestComponent>();
 	apple->RemoveComponent<TestComponent>();
+
+	GuiObject* gui = new GuiObject(glm::vec2(0.5,0.5));
+	gui->AddComponent<GuiImageCcomponent>();
+	gui->GetComponent<GuiImageCcomponent>()->OnCreate("Donald", glm::vec2(0.0, 0.0), 1.0, 0.0, glm::vec4(1, 1, 1, 1));
+	SceneGraph::GetInstance()->AddGuiObject(gui);
 	return true;
 }
 
@@ -47,4 +52,9 @@ void GameScene::Update(const float deltaTime_) {
 
 void GameScene::Render() {
 	SceneGraph::GetInstance()->Render(CoreEngine::getInstance()->GetCamera());
+}
+
+void GameScene::Draw()
+{
+	SceneGraph::GetInstance()->Draw();
 }

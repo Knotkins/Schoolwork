@@ -32,6 +32,11 @@ void Game1::Render() {
 	currentScene->Render();
 }
 
+void Game1::Draw()
+{
+	currentScene->Draw();
+}
+
 void Game1::BuildScene() {
 	delete currentScene;
 	currentScene = nullptr;

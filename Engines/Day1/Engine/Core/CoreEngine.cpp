@@ -36,6 +36,7 @@ bool CoreEngine::OnCreate(std::string name_, int width_, int height_) {
 
 	ShaderHandler::GetInstance()->CreateProram("colorShader", "Engine/Shaders/ColorVertexShader.glsl", "Engine/Shaders/ColorFragmentShader.glsl");
 	ShaderHandler::GetInstance()->CreateProram("basicShader", "Engine/Shaders/VertexShader.glsl", "Engine/Shaders/FragmentShader.glsl");
+	ShaderHandler::GetInstance()->CreateProram("spriteShader", "Engine/Shaders/SpriteVertShader.glsl", "Engine/Shaders/SpriteFragShader.glsl");
 
 
 	if (gameInterface) {
@@ -100,6 +101,7 @@ void CoreEngine::Render() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	if (gameInterface) {
 		gameInterface->Render();
+		gameInterface->Draw();
 	}
 	SDL_GL_SwapWindow(window->getWindow());
 }

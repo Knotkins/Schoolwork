@@ -5,6 +5,9 @@ std::map<GLuint, std::vector<Model*>> SceneGraph::sceneModels =
 std::map<GLuint, std::vector<Model*>>();
 std::map<std::string, GameObject*> SceneGraph::sceneGameObjects =
 std::map<std::string, GameObject*>();
+std::map<std::string, GuiObject*> SceneGraph::sceneGuiObjects =
+std::map<std::string, GuiObject*>();
+
 
 SceneGraph::SceneGraph() {
 }
@@ -83,6 +86,14 @@ void SceneGraph::OnDestroy() {
 			go.second = nullptr;
 		}
 		sceneGameObjects.clear();
+	}
+
+	if (sceneGuiObjects.size() > 0) {
+		for (auto go : sceneGuiObjects) {
+			delete go.second;
+			go.second = nullptr;
+		}
+		sceneGuiObjects.clear();
 	}
 
 	if (sceneModels.size() > 0) {
@@ -181,4 +192,45 @@ bool SceneGraph::InFrustrum(glm::vec3 position_) {
 		}
 	}
 	return true;
+}
+
+void SceneGraph::AddGuiObject(GuiObject* go_, std::string nameTag_)
+{
+	if (nameTag_ == "") {
+		std::string newTag = "GuiObject" + std::to_string(sceneGuiObjects.size() + 1);
+		go_->SetnameTag(newTag);
+		sceneGuiObjects[newTag] = go_;
+	}
+	else if (sceneGuiObjects.find(nameTag_) == sceneGuiObjects.end()) {
+		go_->SetnameTag(nameTag_);
+		sceneGuiObjects[nameTag_] = go_;
+	}
+	else {
+		Debug::Error("Trying to add a GuiObject with a tag " + nameTag_ + " that already exists", "SceneGraph.cpp", __LINE__);
+		std::string newTag = "GuiObject" + std::to_string(sceneGuiObjects.size() + 1);
+		go_->SetnameTag(newTag);
+		sceneGuiObjects[newTag] = go_;
+	}
+}
+
+GuiObject* SceneGraph::GetGuiObject(std::string nameTag_)
+{
+	if (sceneGuiObjects.find(nameTag_) != sceneGuiObjects.end()) {
+		return sceneGuiObjects[nameTag_];
+	}
+	return nullptr;
+}
+
+void SceneGraph::Draw()
+{
+	glDisable(GL_DEPTH_TEST);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glUseProgram(2);
+
+	for (auto m : sceneGuiObjects) {
+		m.second->Draw();
+	}
+	glDisable(GL_BLEND);
+	glEnable(GL_DEPTH_TEST);
 }
