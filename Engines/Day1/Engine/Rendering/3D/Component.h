@@ -6,9 +6,9 @@ class Component
 {
 public:
 	Component();
-	~Component();
-	void OnCreate(GameObject* parent_);
-	void Update(float deltaTime);
+	virtual ~Component();
+	virtual void OnCreate(GameObject* parent_);
+	virtual void Update(float deltaTime);
 
 protected:
 	GameObject* parent;

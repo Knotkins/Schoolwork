@@ -31,9 +31,49 @@ public:
 
 	BoundingBox GetBoundingBox() const;
 
-	template <typename T> void AddComponent(T t_);
-	template <typename T> Component GetComponent(T t_);
-	template <typename T> void RemoveComponent(T t_);
+	template <typename T> void AddComponent()
+	{T* newComponent = new T();
+	if (dynamic_cast<Component*> (newComponent)) {
+		if (GetComponent<T>() == nullptr) {
+			components.push_back(newComponent);
+			newComponent->OnCreate(this);
+		}
+		else {
+			Debug::Error("New component already exists on this object!", __FILE__, __LINE__);
+			delete newComponent;
+			newComponent = nullptr;
+			return;
+		}
+	}
+	else {
+		Debug::Error("New component is not of type component!", __FILE__, __LINE__);
+		delete newComponent;
+		newComponent = nullptr;
+		return;
+	}
+	}
+	template <typename T> T* GetComponent()
+	{
+		for (auto m : components) {
+			if (dynamic_cast<T*> (m)) {
+				return dynamic_cast<T*> (m);
+			}
+		}
+		return nullptr;
+	}
+
+	template <typename T> void RemoveComponent()
+	{
+		for (int i = 0; i < components.size(); i++) {
+			if (dynamic_cast<T*> (components[i])) {
+				delete components[i];
+				components[i] = nullptr;
+				components.erase(components.begin() + i);
+				break;
+			}
+		}
+
+	}
 
 
 private:
@@ -54,5 +94,3 @@ private:
 	std::vector<Component*> components;
 };
 #endif // !GAMEOBJECT_H
-
-

@@ -36,8 +36,8 @@ bool GameScene::OnCreate() {
 
 	SceneGraph::GetInstance()->AddGameObject(apple, "apple");
 
-	apple->AddComponent<TestComponent>;
-
+	apple->AddComponent<TestComponent>();
+	apple->RemoveComponent<TestComponent>();
 	return true;
 }
 
