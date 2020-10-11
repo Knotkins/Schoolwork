@@ -103,6 +103,7 @@ int main(void)
 	printf("type !Exit to close the program and exit the server\n");
 
 	// Receive until the peer shuts down the connection
+	/*
 	do {
 
 		iResult = recv(ClientSocket, recvbuf, recvbuflen, 0);
@@ -129,6 +130,7 @@ int main(void)
 
 		else if (iResult == 0)
 			printf("Connection closing...\n");
+	
 		else {
 			printf("recv failed with error: %d\n", WSAGetLastError());
 			closesocket(ClientSocket);
@@ -138,7 +140,7 @@ int main(void)
 		}
 
 	} while (iResult > 0);
-
+	*/
 	// shutdown the connection since we're done
 	iResult = shutdown(ClientSocket, SD_SEND);
 	if (iResult == SOCKET_ERROR) {

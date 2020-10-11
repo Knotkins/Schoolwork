@@ -82,6 +82,7 @@ int main()
 	}
 
 	// Send an initial buffer
+	/*
 	string userInput;
 	do {
 		printf("> \n");
@@ -97,6 +98,7 @@ int main()
 			}
 		}
 	} while (userInput.size() > 0);
+	*/
 
 	//printf("Bytes Sent: %ld\n", iResult);
 
