@@ -36,14 +36,17 @@ SpriteSurface::~SpriteSurface()
 
 void SpriteSurface::Draw(Camera* camera_, glm::vec2 position_)
 {
-	//glUniform1i(diffuseMapLoc, 0);
+	glUniform1i(textureLoc, 0);
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, textureID);
 
-	glm::mat4 transformMat;
+	glm::mat4 transformMat; //Something about making a new matrix
+
+	transformMat = glm::translate(transformMat, glm::vec3(position_, 0.0));
+	transformMat = glm::rotate(transformMat, angle, glm::vec3(0.0,0.0,1.0));
+	transformMat = glm::scale(transformMat, glm::vec3(width * scale, hieght * scale, 1.0));
 
 	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(transformMat));
-	//glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(camera_->GetView()));
 	glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(camera_->GetOrthographic()));
 	glUniformMatrix4fv(tintLoc, 1, GL_FALSE, glm::value_ptr(tint));
 
@@ -87,7 +90,7 @@ void SpriteSurface::generateBuffers()
 	modelLoc = glGetUniformLocation(shaderProgram, "model");
 	viewLoc = glGetUniformLocation(shaderProgram, "view");
 	projLoc = glGetUniformLocation(shaderProgram, "proj");
-	viewPositionLoc = glGetUniformLocation(shaderProgram, "cameraPosition");
-	tintLoc = glGetUniformLocation(shaderProgram, "tint");
+	tintLoc = glGetUniformLocation(shaderProgram, "tintColour");
+	textureLoc = glGetUniformLocation(shaderProgram, "inputTexture");
 }
 

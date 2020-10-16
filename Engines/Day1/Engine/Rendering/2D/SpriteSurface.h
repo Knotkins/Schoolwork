@@ -36,7 +36,7 @@ private:
 	GLuint viewPositionLoc;
 	GLuint tintLoc;
 	GLuint shaderProgram;
-
+	GLuint textureLoc;
 
 
 	std::vector<Vertex2D> vertexlist;

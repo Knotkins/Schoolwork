@@ -31,8 +31,8 @@ public:
 
 	BoundingBox GetBoundingBox() const;
 
-	template <typename T> void AddComponent()
-	{T* newComponent = new T();
+	template <typename T, typename ... Args> void AddComponent(Args&& ... args_)
+	{T* newComponent = new T(std::forward<Args>(args_)...);
 	if (dynamic_cast<Component*> (newComponent)) {
 		if (GetComponent<T>() == nullptr) {
 			components.push_back(newComponent);
