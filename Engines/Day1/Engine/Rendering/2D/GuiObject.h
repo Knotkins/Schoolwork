@@ -5,6 +5,7 @@
 #include "GuiComponent.h"
 #include <vector>
 #include <string>
+#include "../../Core/Debug.h"
 class GuiObject
 {
 public:
@@ -20,7 +21,6 @@ public:
 		if (dynamic_cast<GuiComponent*> (newComponent)) {
 			if (GetComponent<T>() == nullptr) {
 				components.push_back(newComponent);
-				newComponent->OnCreate(this);
 			}
 			else {
 				Debug::Error("New GUI component already exists on this object!", __FILE__, __LINE__);

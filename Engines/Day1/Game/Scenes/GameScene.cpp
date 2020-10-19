@@ -12,6 +12,8 @@ bool GameScene::OnCreate() {
 	CoreEngine::getInstance()->SetCamera(new Camera);
 	CoreEngine::getInstance()->GetCamera()->SetPosition(glm::vec3(0.0f, 0.0f, 4.0f));
 	CoreEngine::getInstance()->GetCamera()->AddLightSource(new LightSource(glm::vec3(0.0f, 0.0f, 2.0f), glm::vec3(1.0f, 1.0f, 1.0f), 0.1f, 0.5f));
+	
+	AudioHandler::GetInstance()->Initialize(glm::vec3(0.0f, 0.0f, 4.0f));
 
 	CollisionHandler::GetInstance()->OnCreate(100.0f);
 
@@ -36,12 +38,16 @@ bool GameScene::OnCreate() {
 
 	SceneGraph::GetInstance()->AddGameObject(apple, "apple");
 
+	//music = new AudioSource("music.mp3", true, false, true);
+
 	apple->AddComponent<TestComponent>();
+	apple->AddComponent<AudioSource>("./Engine/Audio/music.mp3", true, false, true);
+	apple->GetComponent<AudioSource>()->PlaySound();
 	apple->RemoveComponent<TestComponent>();
 
 	GuiObject* gui = new GuiObject(glm::vec2(0.5,0.5));
 	gui->AddComponent<GuiImageCcomponent>();
-	gui->GetComponent<GuiImageCcomponent>()->OnCreate("Donald", glm::vec2(0.0, 0.0), 1.0, 0.0, glm::vec4(1, 1, 1, 1));
+	gui->GetComponent<GuiImageCcomponent>()->OnCreate("DonaldDuck", glm::vec2(0.0, 0.0), 1.0, 0.0, glm::vec4(1, 1, 1, 1));
 	SceneGraph::GetInstance()->AddGuiObject(gui);
 	return true;
 }
