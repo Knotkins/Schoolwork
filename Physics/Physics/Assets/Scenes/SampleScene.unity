@@ -321,6 +321,7 @@ GameObject:
   - component: {fileID: 932809788}
   - component: {fileID: 932809794}
   - component: {fileID: 932809792}
+  - component: {fileID: 932809793}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -416,6 +417,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   angularRotation: -45
   prevRotation: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &932809793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932809787}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ae656d166d548844bd3a64f1a0d08b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &932809794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -629,12 +642,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1769279607}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ae656d166d548844bd3a64f1a0d08b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectName: Red Sphere
 --- !u!114 &1769279614
 MonoBehaviour:
   m_ObjectHideFlags: 0
