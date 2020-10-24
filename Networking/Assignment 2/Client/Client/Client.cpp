@@ -46,8 +46,8 @@ void main(int argc, char* argv[]) // We can pass in a command line option!!
 
 
 	// Write out to that socket
-	std::vector<std::string> stringVector;
-	char max[255];
+	std::vector<std::string> sv;
+	char hold[255];
 	char buf[1024];
 	bool isRunning = true;
 	int counter = 1;
@@ -55,11 +55,11 @@ void main(int argc, char* argv[]) // We can pass in a command line option!!
 
 	while (isRunning) {
 		printf(" > ");
-		std::cin >> max;
+		std::cin >> hold;
 
-		if (!strcmp(max, "!SEND")) {
+		if (!strcmp(hold, "send")) {
 
-			for (auto i : stringVector) {
+			for (auto i : sv) {
 				printf(i.c_str());
 				printf("\n");
 
@@ -70,27 +70,25 @@ void main(int argc, char* argv[]) // We can pass in a command line option!!
 
 				int bytesIn = recvfrom(out, buf, 1024, 0, (sockaddr*)&server, &serverLength);
 				if (bytesIn == SOCKET_ERROR) {
-					printf("Error receiving from client ", WSAGetLastError());
-					printf("\n");
+					std::cout << "Error receiving from client " << WSAGetLastError() << std::endl;
 					continue;
 				}
 				else {
-					printf(buf);
-					printf("\n");
+					std::cout << buf << std::endl;
 					ZeroMemory(buf, 1024); // Clear the receive buffer
 				}
 			}
 			counter = 1;
-			stringVector.clear();
+			sv.clear();
 		}
-		else if (!strcmp(max, "!EXIT")) {
+		else if (!strcmp(hold, "exit")) {
 			isRunning = false;
-			for (auto i : max) {
+			for (auto i : hold) {
 				i = NULL;
 			}
 		}
 		else {
-			stringVector.push_back(max);
+			sv.push_back(hold);
 			counter++;
 		}
 	}

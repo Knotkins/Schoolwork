@@ -85,12 +85,11 @@ void main()
 		std::cout << "Message recv from " << clientIp << " : " << buf << std::endl;
 
 		// Send the client a message "SUCCESS" if message is receieved
-		int send = sendto(in, "SUCCESS", 1024, 0, (sockaddr*)&client, clientLength);
+		int sendOk = sendto(in, "message Good", 1024, 0, (sockaddr*)&client, clientLength);
 
 		// If message sent to client fails then send a message saying "MESSAGE FAILED TO SEND"
-		if (send == SOCKET_ERROR) {
-			printf("MESSAGE FAILED TO SEND "+ WSAGetLastError());
-			printf("\n");
+		if (sendOk == SOCKET_ERROR) {
+			std::cout << "message Failed " << WSAGetLastError() << std::endl;
 		}
 	}
 
