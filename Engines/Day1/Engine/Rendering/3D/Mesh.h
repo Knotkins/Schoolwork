@@ -1,12 +1,10 @@
 #ifndef MESH_H
 #define MESH_H
 
-#include <glew.h>
 #include <vector>
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include "../../Camera/Camera.h"
-#include <string>
 #include "../../Graphics/MaterialHandler.h"
 
 struct vertex {
@@ -25,24 +23,12 @@ struct SubMesh {
 
 class Mesh {
 public:
-	Mesh(SubMesh subMesh_, GLuint shaderProgram_);
-	~Mesh();
+	Mesh() {};
+	~Mesh() {};
 	
-	void Render(Camera* camera_,std::vector<glm::mat4> instances_);
-
+	virtual void Render(Camera* camera_,std::vector<glm::mat4> instances_) = 0;
 private:
-	void generateBuffers();
-
-	GLuint VAO, VBO;
-
-	std::vector<vertex> vertexlist;
-
-	SubMesh subMesh;
-	GLuint shaderProgram;
-	GLuint modelLoc, viewLoc, projLoc;
-	GLuint textureID;
-	GLuint viewPositionLoc, lightPositionLoc, ambientLightLoc, diffuseLightLoc, lightColorLoc;
-	GLuint diffuseMapLoc, ambientMatLoc, diffuseMatLoc, specularMatLoc, shininessLoc, transparencyLoc;
+	//virtual void generateBuffers() = 0;
 };
 
 #endif // !MESH_H

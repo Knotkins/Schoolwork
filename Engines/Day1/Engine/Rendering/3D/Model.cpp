@@ -1,9 +1,13 @@
 #include "Model.h"
+#include "../../Core/CoreEngine.h"
 
 Model::Model(const std::string objFilePath_, const std::string& matFilePath_, GLuint shaderProgram_) : subMeshes(std::vector<Mesh*>()), shaderProgram(0), modelInstance(std::vector<glm::mat4>()), obj(nullptr) {
 	subMeshes.reserve(10);
 	shaderProgram = shaderProgram_;
 	modelInstance.reserve(5);
+
+	renderType = CoreEngine::getInstance()->GetRenderType();
+
 	obj = new LoadOBJModel();
 	obj->LoadModel(objFilePath_, matFilePath_);
 	this->LoadModel();
@@ -54,7 +58,8 @@ glm::mat4 Model::GetTransform(int index_) const {
 
 void Model::LoadModel() {
 	for (int i = 0; i < obj->GetSubMeshes().size(); i++) {
-		subMeshes.push_back(new Mesh(obj->GetSubMeshes()[i], shaderProgram));
+		if(renderType == RenderType::TYPE_OPENGL)
+			subMeshes.push_back(new OpenGLMesh(obj->GetSubMeshes()[i], shaderProgram));
 	}
 
 	box = obj->GetBoundingBox();

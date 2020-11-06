@@ -6,6 +6,7 @@
 #include <SDL_opengl.h>
 #include <string>
 #include <iostream>
+#include "Renderer.h"
 
 class Window {
 public:
@@ -22,13 +23,12 @@ public:
 	SDL_Window* getWindow() const;
 
 private:
-	void setPreAttributes();
-	void setPostAttributes();
+	Renderer* renderer;
 	
 	int width;
 	int height;
 
 	SDL_Window* window;
-	SDL_GLContext context;
+
 };
 #endif // !WINDOW_H

@@ -12,7 +12,7 @@
 class AudioHandler
 {
 public:
-	friend class AudioSource;
+	
 	AudioHandler(const AudioHandler&) = delete;
 	AudioHandler(AudioHandler&&) = delete;
 
@@ -22,7 +22,9 @@ public:
 	static AudioHandler* GetInstance();
 	bool Initialize(glm::vec3 pos_ = glm::vec3(0.0, 0.0, 0.0), glm::vec3 vel_ = glm::vec3(0.0, 0.0, 0.0), glm::vec3 forward_ = glm::vec3(0.0, 0.0, -1.0), glm::vec3 up_ = glm::vec3(0.0, 1.0, 0.0));
 	void OnDestroy();
+
 private:
+	friend class AudioSource;
 	AudioHandler();
 	~AudioHandler();
 

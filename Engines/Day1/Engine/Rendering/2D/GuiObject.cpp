@@ -13,10 +13,10 @@ GuiObject::~GuiObject()
 	components.clear();
 }
 
-void GuiObject::Draw()
+void GuiObject::Draw(Camera* camera_)
 {
 	for (auto m : components) {
-		m->Draw();
+		m->Draw(camera_, position);
 	}
 }
 

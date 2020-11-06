@@ -12,7 +12,7 @@ public:
 	GuiObject(glm::vec2 position_);
 	~GuiObject();
 
-	void Draw();
+	void Draw(Camera* camera_);
 	void SetnameTag(std::string nameTag_);
 
 	template <typename T> void AddComponent()

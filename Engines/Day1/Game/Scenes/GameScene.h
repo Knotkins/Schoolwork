@@ -6,6 +6,7 @@
 #include "../../Engine/Rendering/3D/TestComponent.h"
 #include "../../Engine/Audio/AudioHandler.h"
 #include "../../Engine/Audio/AudioSource.h"
+#include "../../Engine/Rendering/2D/ParticleEmitter.h"
 
 class GameScene : public Scene {
 public:
@@ -16,8 +17,9 @@ public:
 	virtual void Update(const float deltaTime_);
 	virtual void Render();
 	virtual void Draw();
+	ParticleEmitter* part;
 	//AudioSource music;
-
+	//CREATE AN EMITTER AND USE IT TO RENDER AND UPDATE THE THINGS
 private:
 };
 

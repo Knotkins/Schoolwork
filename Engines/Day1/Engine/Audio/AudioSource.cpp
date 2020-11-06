@@ -1,12 +1,13 @@
 #include "AudioSource.h"
 #include "AudioHandler.h"
+#include"../Rendering/3D/GameObject.h"
 
 AudioSource::AudioSource(std::string name_, bool loop_, bool is3d_, bool howPlay_)
 {
 	channelID = -1;
 	fileName = name_;
-	AudioHandler audioHandler;
-	audioHandler.loadSound(name_, loop_, is3d_, howPlay_);
+	//AudioHandler audioHandler;
+	AudioHandler::GetInstance()->loadSound(name_, loop_, is3d_, howPlay_);
 }
 
 AudioSource::~AudioSource()
@@ -24,11 +25,11 @@ void AudioSource::Update()
 
 void AudioSource::PlaySound()
 {
-	AudioHandler audioHandler;
-	channelID = audioHandler.playSound(fileName, glm::vec3(0.0,0.0,0.0)); //Shoudld have parent.getPos(), but you can't use function from a pointer..
+	//AudioHandler audioHandler;
+	channelID = AudioHandler::GetInstance()->playSound(fileName, parent->GetPosition()); //Shoudld have parent.getPos(), but you can't use function from a pointer..
 }
 bool AudioSource::IsPlaying()
 {
-	AudioHandler audioHandler;
-	return audioHandler.isPlaying(channelID);
+	//AudioHandler audioHandler;
+	return AudioHandler::GetInstance()->isPlaying(channelID);
 }

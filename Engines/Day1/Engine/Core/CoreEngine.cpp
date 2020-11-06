@@ -23,6 +23,7 @@ bool CoreEngine::OnCreate(std::string name_, int width_, int height_) {
 	Debug::SetSeverity(MessageType::TYPE_INFO);
 	
 	window = new Window();
+	CreateRenderer();
 	if (!window->OnCreate(name_, width_, height_)) {
 		Debug::fatalError("Window failed to initialize", "CoreEngine.cpp", __LINE__);
 		return isRunning = false;
@@ -34,9 +35,10 @@ bool CoreEngine::OnCreate(std::string name_, int width_, int height_) {
 
 	MouseEventListener::RegisterEngineObject(this);
 
-	ShaderHandler::GetInstance()->CreateProram("colorShader", "Engine/Shaders/ColorVertexShader.glsl", "Engine/Shaders/ColorFragmentShader.glsl");
-	ShaderHandler::GetInstance()->CreateProram("basicShader", "Engine/Shaders/VertexShader.glsl", "Engine/Shaders/FragmentShader.glsl");
-	ShaderHandler::GetInstance()->CreateProram("spriteShader", "Engine/Shaders/SpriteVertShader.glsl", "Engine/Shaders/SpriteFragShader.glsl");
+	//ShaderHandler::GetInstance()->CreateProram("colorShader", "Engine/Shaders/ColorVertexShader.glsl", "Engine/Shaders/ColorFragmentShader.glsl");
+	//ShaderHandler::GetInstance()->CreateProram("basicShader", "Engine/Shaders/VertexShader.glsl", "Engine/Shaders/FragmentShader.glsl");
+	//ShaderHandler::GetInstance()->CreateProram("spriteShader", "Engine/Shaders/SpriteVertShader.glsl", "Engine/Shaders/SpriteFragShader.glsl");
+	//ShaderHandler::GetInstance()->CreateProram("particleShader", "Engine/Shaders/ParticleVertShader.glsl", "Engine/Shaders/ParticleFragShader.glsl");
 
 
 	if (gameInterface) {
@@ -97,17 +99,16 @@ void CoreEngine::Update(const float deltaTime_) {
 }
 
 void CoreEngine::Render() {
-	glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	
 	if (gameInterface) {
 		gameInterface->Render();
-		gameInterface->Draw();
+		
 	}
-	SDL_GL_SwapWindow(window->getWindow());
 }
 
-void CoreEngine::SetGameInterface(GameInterface* gameInterface_) {
+void CoreEngine::SetGameInterface(GameInterface* gameInterface_, RenderType renderType_) {
 	gameInterface = gameInterface_;
+	renderType = renderType_;
 }
 
 int CoreEngine::GetCurrentScene() {
@@ -151,4 +152,26 @@ void CoreEngine::NotifyOfMouseScroll(int y_) {
 	if (camera) {
 		camera->ProcessMouseScroll(y_);
 	}
+}
+
+RenderType CoreEngine::GetRenderType()
+{
+	return renderType;
+}
+
+Renderer* CoreEngine::GetRenderer()
+{
+	return renderer;
+}
+
+void CoreEngine::CreateRenderer()
+{
+	if (renderType == RenderType::TYPE_OPENGL) {
+		renderer = new OpenGLRenderer();
+	}
+}
+
+Window* CoreEngine::getWindow() const
+{
+	return window;
 }

@@ -8,6 +8,7 @@
 #include <string>
 #include "../../Camera/Camera.h"
 #include "../../Graphics/TextureHandler.h"
+#include "../../Graphics/ShaderHandler.h"
 
 
 struct Vertex2D {

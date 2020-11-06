@@ -18,6 +18,7 @@ bool GameScene::OnCreate() {
 	CollisionHandler::GetInstance()->OnCreate(100.0f);
 
 	TextureHandler::GetInstance()->CreateTexture("DonaldDuck", "./Resources/Textures/Donald.png");
+	TextureHandler::GetInstance()->CreateTexture("particleTest", "./Resources/Textures/Apple_Body.jpg");
 
 	Model* model1 = new Model("./Resources/Models/Dice.obj", "./Resources/Material/Dice.mtl", ShaderHandler::GetInstance()->GetShader("basicShader"));
 	SceneGraph::GetInstance()->AddModel(model1);
@@ -49,18 +50,21 @@ bool GameScene::OnCreate() {
 	gui->AddComponent<GuiImageCcomponent>();
 	gui->GetComponent<GuiImageCcomponent>()->OnCreate("DonaldDuck", glm::vec2(0.0, 0.0), 1.0, 0.0, glm::vec4(1, 1, 1, 1));
 	SceneGraph::GetInstance()->AddGuiObject(gui);
+	part = new ParticleEmitter(50, "particleTest", "particleShader");
 	return true;
 }
 
 void GameScene::Update(const float deltaTime_) {
 	SceneGraph::GetInstance()->Update(deltaTime_);
+	part->Update(deltaTime_);
 }
 
 void GameScene::Render() {
 	SceneGraph::GetInstance()->Render(CoreEngine::getInstance()->GetCamera());
+	part->Render(CoreEngine::getInstance()->GetCamera());
 }
 
 void GameScene::Draw()
 {
-	SceneGraph::GetInstance()->Draw();
+	SceneGraph::GetInstance()->Draw(CoreEngine::getInstance()->GetCamera());
 }

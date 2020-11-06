@@ -18,9 +18,10 @@ void GuiImageCcomponent::OnCreate(std::string name_, glm::vec2 offset_ = glm::ve
 
 void GuiImageCcomponent::Draw(Camera* camera_, glm::vec2 parentPosition_)
 {
+	spriteSurface->Draw(camera_, parentPosition_);
 }
 
-void GuiImageCcomponent::FindContainingObject()
+void GuiImageCcomponent::FindContainingPoint()
 {
 	if (spriteSurface) {
 

@@ -8,6 +8,8 @@
 #include "../Math/CollisionHandler.h"
 #include"2D/GuiObject.h"
 #include"2D/GuiImageCcomponent.h"
+#include "../Graphics/ShaderHandler.h"
+#include "3D/Model.h"
 
 class SceneGraph {
 public:
@@ -31,7 +33,7 @@ public:
 	void AddGuiObject(GuiObject* go_, std::string nameTag_ = "");
 	GuiObject* GetGuiObject(std::string nameTag_);
 
-	void Draw();
+	void Draw(Camera* camera_);
 
 private:
 	SceneGraph();

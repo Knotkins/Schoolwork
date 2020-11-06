@@ -9,6 +9,12 @@ Game1::~Game1() {
 }
 
 bool Game1::OnCreate() {
+
+	ShaderHandler::GetInstance()->CreateProram("colorShader", "Engine/Shaders/ColorVertexShader.glsl", "Engine/Shaders/ColorFragmentShader.glsl");
+	ShaderHandler::GetInstance()->CreateProram("basicShader", "Engine/Shaders/VertexShader.glsl", "Engine/Shaders/FragmentShader.glsl");
+	ShaderHandler::GetInstance()->CreateProram("spriteShader", "Engine/Shaders/SpriteVertShader.glsl", "Engine/Shaders/SpriteFragShader.glsl");
+	ShaderHandler::GetInstance()->CreateProram("particleShader", "Engine/Shaders/ParticleVertShader.glsl", "Engine/Shaders/ParticleFragShader.glsl");
+
 	if (CoreEngine::getInstance()->GetCurrentScene() == 0) {
 		currentScene = new StartScene();
 		if (!currentScene->OnCreate()) {
@@ -29,7 +35,12 @@ void Game1::Update(const float deltaTime_) {
 }
 
 void Game1::Render() {
+	glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	currentScene->Render();
+	Draw();
+	SDL_GL_SwapWindow(CoreEngine::getInstance()->getWindow()->getWindow());
+
 }
 
 void Game1::Draw()
