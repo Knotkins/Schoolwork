@@ -27,12 +27,12 @@ ParticleEmitter::~ParticleEmitter()
 
 void ParticleEmitter::Update(float deltaTime_)
 {
-	for (int i = 0; i < number; i++) {
+	for (int i = 0; i < particles.size(); i++) {
 		particles[i]->lifeTime -= deltaTime_;
 		if (particles[i]->lifeTime <= 0) {
-			particles[i]->~Particle();
 			delete particles[i];
-			particles.shrink_to_fit();
+			particles[i] = nullptr;
+			particles.erase(particles.begin() + i);
 		}
 		else
 			particles[i]->position = particles[i]->velocity * deltaTime_;
@@ -50,7 +50,7 @@ void ParticleEmitter::Render(Camera* camera_)
 void ParticleEmitter::Stagger()
 {
 	for (int i = 0; i < number; i++) {
-		particles[i]->velocity = glm::vec3(rand(), rand(), rand()); //USE SCOTT'S RAND FUNCTION
+		particles[i]->velocity = glm::vec3(0, 1, 0); //USE SCOTT'S RAND FUNCTION
 	}
 }
 // GIVE EMITTER A POSTION, OFFSET CREATED PARTICLES BY THAT POSITION
