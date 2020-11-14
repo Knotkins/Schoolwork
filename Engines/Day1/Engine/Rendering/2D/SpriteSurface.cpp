@@ -23,7 +23,7 @@ SpriteSurface::SpriteSurface(std::string name_, float scale_, float angle_, glm:
 	textureID = TextureHandler::GetInstance()->GetTexture(name);
 	width = TextureHandler::GetInstance()->GetTextureData(name)->width;
 	hieght = TextureHandler::GetInstance()->GetTextureData(name)->height;
-
+	shaderProgram = ShaderHandler::GetInstance()->GetShader("spriteShader");
 	generateBuffers();
 
 }
@@ -48,7 +48,7 @@ void SpriteSurface::Draw(Camera* camera_, glm::vec2 position_)
 
 	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(transformMat));
 	glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(camera_->GetOrthographic()));
-	glUniformMatrix4fv(tintLoc, 1, GL_FALSE, glm::value_ptr(tint));
+	glUniform4fv(tintLoc, 1, glm::value_ptr(tint));
 
 	glBindVertexArray(VAO);
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, vertexlist.size());
@@ -78,11 +78,11 @@ void SpriteSurface::generateBuffers()
 
 	//POSITION
 	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex2D), (GLvoid*)0);
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex2D), (GLvoid*)0);
 
 	//TEXTURE COORDINATES
-	glEnableVertexAttribArray(2);
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex2D), (GLvoid*)offsetof(Vertex2D, textureCoords));
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex2D), (GLvoid*)offsetof(Vertex2D, textureCoords));
 
 	glBindVertexArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);

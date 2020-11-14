@@ -14,7 +14,7 @@ public:
 
 	virtual void OnCreate(std::string name_, glm::vec2 offset_, float scale_, float angle, glm::vec4 tint_);
 	virtual void Draw(Camera* camera_, glm::vec2 parentPosition_);
-	virtual void FindContainingObject();
+	virtual void FindContainingPoint();
 
 private:
 	SpriteSurface* spriteSurface;

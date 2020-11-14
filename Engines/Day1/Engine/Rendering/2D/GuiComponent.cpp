@@ -8,7 +8,7 @@ GuiComponent::~GuiComponent()
 {
 }
 
-void GuiComponent::Draw()
+void GuiComponent::Draw(Camera* camera_, glm::vec2 parentPosition_)
 {
 }
 

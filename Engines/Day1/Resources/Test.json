@@ -1,0 +1,72 @@
+{
+  "scene": {
+    "texture": [
+      {
+        "id": 1,
+        "name": "DonaldDuck",
+        "path": "./Resources/Textures/Donald.png"
+      },
+      {
+        "id": 2,
+        "name": "particleTest",
+        "path": "./Resources/Textures/Apple_Body.jpg"
+      }
+    ],
+    "model": [
+      {
+        "id": 1,
+        "name": "model1",
+        "obj": "./Resources/Models/Dice.obj",
+        "mtl": "./Resources/Material/Dice.mtl",
+        "shader": "basicShader"
+      },
+      {
+        "id": 2,
+        "name": "model2",
+        "obj": "./Resources/Models/Apple.obj",
+        "mtl": "./Resources/Material/Apple.mtl",
+        "shader": "basicShader"
+      }
+    ],
+    "gameObject": [
+      {
+        "id": 1,
+        "name": "dice",
+        "model": "model1",
+        "position": [ 0.0, 0.0, 0.0 ],
+        "components": {}
+      },
+      {
+        "id": 2,
+        "name": "apple",
+        "model": "model2",
+        "position": [ 3.0, -1.0, 0.0 ],
+        "components": {
+          "TestComponent": "",
+          "AudioSource": {
+            "path": "./Engine/Audio/music.mp3",
+            "loop": true,
+            "is3d": false,
+            "howPlay": true
+          }
+        }
+      }
+    ],
+    "guiObject": [
+      {
+        "id": 1,
+        "name": "gui",
+        "position": [ 0.5, 0.5 ],
+        "components": {
+          "GuiImageCcomponent": {
+            "name": "DonaldDuck",
+            "offset": [ 0.0, 0.0 ],
+            "scale": 1.0,
+            "angle": 0.0,
+            "tint": [ 1.0, 1.0, 1.0, 1.0 ]
+          }
+        }
+      }
+    ]
+  }
+}

@@ -5,6 +5,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <string>
 #include "LoadOBJModel.h"
+#include "../../Core/Renderer.h"
+#include "OpenGLMesh.h"
 
 class Model {
 public:
@@ -45,5 +47,7 @@ private:
 
 	LoadOBJModel* obj;
 	BoundingBox box;
+
+	RenderType renderType;
 };
 #endif // !MODEL_H

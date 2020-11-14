@@ -13,6 +13,8 @@
 #include "../Graphics/TextureHandler.h"
 #include "../Events/EventListener.h"
 #include "../Rendering/SceneGraph.h"
+#include "Renderer.h"
+#include "OpenGLRenderer.h"
 
 class CoreEngine
 {
@@ -27,7 +29,7 @@ public:
 	bool getIsRunning() const;
 
 	void Run();
-	void SetGameInterface(GameInterface* gameInterface_);
+	void SetGameInterface(GameInterface* gameInterface_, RenderType renderType_ = RenderType::TYPE_OPENGL);
 	void SetCurrentScene(int sceneNum_);
 	void Exit();
 
@@ -45,6 +47,13 @@ public:
 	void NotifyOfMouseReleased(glm::vec2 mouse_, int buttonType_);
 	void NotifyOfMouseMove(glm::vec2 mouse_);
 	void NotifyOfMouseScroll(int y_);
+
+	RenderType GetRenderType();
+	Renderer* GetRenderer();
+
+	void CreateRenderer();
+
+	Window* getWindow() const;
 
 private:
 	CoreEngine();
@@ -70,5 +79,8 @@ private:
 	int currentSceneNum;
 
 	Camera* camera;
+
+	RenderType renderType;
+	Renderer* renderer;
 };
 #endif // !COREENGINE_H

@@ -221,15 +221,15 @@ GuiObject* SceneGraph::GetGuiObject(std::string nameTag_)
 	return nullptr;
 }
 
-void SceneGraph::Draw()
+void SceneGraph::Draw(Camera* camera_)
 {
 	glDisable(GL_DEPTH_TEST);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glUseProgram(2);
+	glUseProgram(ShaderHandler::GetInstance()->GetShader("spriteShader"));
 
 	for (auto m : sceneGuiObjects) {
-		m.second->Draw();
+		m.second->Draw(camera_);
 	}
 	glDisable(GL_BLEND);
 	glEnable(GL_DEPTH_TEST);
