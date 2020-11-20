@@ -63,9 +63,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\LinearMotion.cs" />
-    <Compile Include="Assets\Scripts\RotationalMotion.cs" />
-    <Compile Include="Assets\Scripts\Vetices.cs" />
+    <Compile Include="Assets\Scripts\CubeA.cs" />
+    <Compile Include="Assets\Scripts\CustomRigidBody.cs" />
+    <Compile Include="Assets\Scripts\GJKAlgorithm.cs" />
+    <Compile Include="Assets\Scripts\GJKManager.cs" />
+    <Compile Include="Assets\Scripts\GJKMesh.cs" />
+    <Compile Include="Assets\Scripts\GJKState.cs" />
+    <Compile Include="Assets\Scripts\IConvexRegion.cs" />
+    <Compile Include="Assets\Scripts\Old\LinearMotion.cs" />
+    <Compile Include="Assets\Scripts\Old\RotationalMotion.cs" />
+    <Compile Include="Assets\Scripts\Old\Vetices.cs" />
+    <Compile Include="Assets\Scripts\PhysicsExtensionMethods.cs" />
+    <Compile Include="Assets\Scripts\Simplex.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.12f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
