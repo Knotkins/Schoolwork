@@ -11,7 +11,7 @@ public class GJKManager : MonoBehaviour
     {
         public GJKMesh meshGJK;
         public Transform transform;
-        public Mesh meshReference;
+        public MeshFilter meshReference;
     }
 
     public BoxHelper a;
@@ -21,11 +21,11 @@ public class GJKManager : MonoBehaviour
     
     void GJK()
     {
-        a.meshGJK = new GJKMesh() { transform = a.transform, mesh = a.meshReference };
-        b.meshGJK = new GJKMesh() { transform = b.transform, mesh = b.meshReference };
+        a.meshGJK = new GJKMesh() { transform = a.transform, mesh = a.meshReference.mesh };
+        b.meshGJK = new GJKMesh() { transform = b.transform, mesh = b.meshReference.mesh };
         // stuff I added
-        a.meshGJK.vertices = new List<Vector3>(a.meshReference.vertices);
-        a.meshGJK.vertices = new List<Vector3>(b.meshReference.vertices);
+        a.meshGJK.vertices = new List<Vector3>(a.meshReference.mesh.vertices);
+        b.meshGJK.vertices = new List<Vector3>(b.meshReference.mesh.vertices);
 
         state = new GJKState();
         state.isColliding = GJKAlgorithm.Intersects(a.meshGJK, a.meshGJK.transform, b.meshGJK, b.meshGJK.transform, state);
