@@ -42,7 +42,7 @@ public class GJKManager : MonoBehaviour
     {
         bool colliding = state.isColliding;
         GJK();
-        GizmosDraw();
+        //GizmosDraw();
         Debug.Log(a.meshGJK.vertices.Count);
         if (Input.GetKey(KeyCode.D))
         {
