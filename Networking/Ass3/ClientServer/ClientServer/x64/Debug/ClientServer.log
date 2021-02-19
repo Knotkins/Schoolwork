@@ -1,5 +1,0 @@
-﻿  Client.cpp
-D:\School\2NETWORKING\Ass3\ClientServer\ClientServer\Client.cpp(108,81): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-  Server.cpp
-  Generating Code...
-  ClientServer.vcxproj -> D:\School\2NETWORKING\Ass3\ClientServer\x64\Debug\ClientServer.exe
